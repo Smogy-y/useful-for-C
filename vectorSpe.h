@@ -50,6 +50,7 @@ void vector_##TYPE##_remove(Vector_##TYPE *vec, size_t index) {                 
     if (index >= vec->size) {                                                          \
         return; /* Index out of bounds */                                              \
     }                                                                                  \
+    vec->free_elem(vec->data[index]);                                                  \
     vec->data[index] = vec->data[vec->size - 1];                                       \
     vec->size--;                                                                       \
     if (vec->size <= vec->capacity / 3) {                                              \
